@@ -1,0 +1,149 @@
+<!DOCTYPE html> 
+<html lang='en'>
+<!--
+    Credit: Professor Pogue
+    Author: Randall Sutton
+    Project: Matchmaker
+    All rights reserved.
+-->
+<head>
+    <meta charset='UTF-8'
+    <title>Randall Lite for the Web</title>
+</head>
+<body>
+    <h1> LoveMaker </h1>
+    <p> Instructions...</p>
+
+<label>Lebron James is the greatest basketball player of all time!</label><br />
+<select id='q1'>
+  <option value='5'>Strongly Agree</option>
+  <option value='4'>Agree</option>
+  <option value='3'>Neither agree nor disagree</option>
+  <option value='2'>Disagree</option>
+  <option value='1'>Strongly Disagree</option>
+</select>
+<br /> <br />
+
+<label>The Lakers will win a NBA championship this year.</label><br />
+<select id='q2'>
+  <option value='5'>Strongly Agree</option>
+  <option value='4'>Agree</option>
+  <option value='3'>Neither agree nor disagree</option>
+  <option value='2'>Disagree</option>
+  <option value='1'>Strongly Disagree</option>
+</select>
+<br /><br />
+<label>Python is the best computer language.</label><br />
+<select id='q3'>
+  <option value='5'>Strongly Agree</option>
+  <option value='4'>Agree</option>
+  <option value='3'>Neither agree nor disagree</option>
+  <option value='2'>Disagree</option>
+  <option value='1'>Strongly Disagree</option>
+</select>
+<br /><br />
+<label>I love this class.</label><br />
+<select id='q4'>
+  <option value='5'>Strongly Agree</option>
+  <option value='4'>Agree</option>
+  <option value='3'>Neither agree nor disagree</option>
+  <option value='2'>Disagree</option>
+  <option value='1'>Strongly Disagree</option>
+</select>
+<br /><br />
+
+<label> I cannot wait to go on winter break.</label><br />
+<select id='q5'>
+  <option value='5'>Strongly Agree</option>
+  <option value='4'>Agree</option>
+  <option value='3'>Neither agree nor disagree</option>
+  <option value='2'>Disagree</option>
+  <option value='1'>Strongly Disagree</option>
+</select>
+<br /><br /> <br />
+<button onclick='calculateCompatibility()'> Calculate Compatibility</button>
+<p id='compatibility'></p>
+
+<script> 
+console.log('Starting Matchmaker Lite...');
+
+function calculateCompatibility() { 
+    console.log('calculateCompatibility()');
+
+    const Desired_Response = [ 
+        5,
+        5, 
+        3, 
+        5,
+        5
+
+    ]
+
+    const MAX_SCORE = 25;
+
+    
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+
+   
+    console.log('Question 1 Answers:')
+    console.log(document.getElementById('q1').selectedOptions[0].text);
+    console.log(document.getElementById('q1').selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log('Question 2 Answers:')
+    console.log(document.getElementById('q2').selectedOptions[0].text);
+    console.log(document.getElementById('q2').selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log('Question 3 Answers:');
+    console.log(document.getElementById('q3').selectedOptions[0].text);
+    console.log(document.getElementById('q3').selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log('Question 4 Answers:')
+    console.log(document.getElementById('q4').selectedOptions[0].text);
+    console.log(document.getElementById('q4').selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log('Question 5 Answers:');
+    console.log(document.getElementById('q5').selectedOptions[0].text);
+    console.log(document.getElementById('q5').selectedOptions[0].value);
+    console.log(question5Response);
+
+    
+    let question1Compatibility = 5 - Math.abs(question1Response - Desired_Response[0]);
+    let question2Compatibility = 5 - Math.abs(question2Response - Desired_Response[1]);
+    let question3Compatibility = 5 - Math.abs(question3Response - Desired_Response[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - Desired_Response[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - Desired_Response[4]);
+
+    console.log('c1='+question1Compatibility);
+    console.log('c2='+question2Compatibility);
+    console.log('c3='+question3Compatibility);
+    console.log('c4='+question4Compatibility);
+    console.log('c5='+question5Compatibility);
+
+    
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+    
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log('totalCompatibility='+ totalCompatibility);
+
+    document.getElementById('compatibility').innerHTML = 'Your compatibility is: '+totalCompatibility;
+
+
+
+
+
+}
+
+</script>
+</body>
+</html>
