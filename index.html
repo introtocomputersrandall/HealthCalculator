@@ -1,147 +1,215 @@
-<!DOCTYPE html> 
-<html lang='en'>
-<!--
-    Credit: Professor Pogue
-    Author: Randall Sutton
-    Project: Matchmaker
-    All rights reserved.
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    Credit: Professor Eric Pogue
+    Author:  Randall Sutton
+    Project: Health Insurance Risk Calculator on the Web
+	
+	All rights reserved.
 -->
+
 <head>
-    <meta charset='UTF-8'
-    <title>Randall Lite for the Web</title>
+	<meta charset="UTF-8">
+	<title>Risk Calculator</title>
 </head>
+
 <body>
-    <h1> LoveMaker </h1>
-    <p> Instructions...</p>
+	<h1>Health Insurance Risk Calculator</h1>
+	<p> Please enter your health information to determine your eligibility for insurance.</p>
 
-<label>Lebron James is the greatest basketball player of all time!</label><br />
-<select id='q1'>
-  <option value='5'>Strongly Agree</option>
-  <option value='4'>Agree</option>
-  <option value='3'>Neither agree nor disagree</option>
-  <option value='2'>Disagree</option>
-  <option value='1'>Strongly Disagree</option>
-</select>
-<br /> <br />
-
-<label>The Lakers will win a NBA championship this year.</label><br />
-<select id='q2'>
-  <option value='5'>Strongly Agree</option>
-  <option value='4'>Agree</option>
-  <option value='3'>Neither agree nor disagree</option>
-  <option value='2'>Disagree</option>
-  <option value='1'>Strongly Disagree</option>
-</select>
-<br /><br />
-<label>Python is the best computer language.</label><br />
-<select id='q3'>
-  <option value='5'>Strongly Agree</option>
-  <option value='4'>Agree</option>
-  <option value='3'>Neither agree nor disagree</option>
-  <option value='2'>Disagree</option>
-  <option value='1'>Strongly Disagree</option>
-</select>
-<br /><br />
-<label>I love this class.</label><br />
-<select id='q4'>
-  <option value='5'>Strongly Agree</option>
-  <option value='4'>Agree</option>
-  <option value='3'>Neither agree nor disagree</option>
-  <option value='2'>Disagree</option>
-  <option value='1'>Strongly Disagree</option>
-</select>
-<br /><br />
-
-<label> I cannot wait to go on winter break.</label><br />
-<select id='q5'>
-  <option value='5'>Strongly Agree</option>
-  <option value='4'>Agree</option>
-  <option value='3'>Neither agree nor disagree</option>
-  <option value='2'>Disagree</option>
-  <option value='1'>Strongly Disagree</option>
-</select>
-<br /><br /> <br />
-<button onclick='calculateCompatibility()'> Calculate Compatibility</button>
-<p id='compatibility'></p>
-
-<script> 
-console.log('Starting Matchmaker Lite...');
-
-function calculateCompatibility() { 
-    console.log('calculateCompatibility()');
-
-    const Desired_Response = [ 
-        5,
-        5, 
-        3, 
-        5,
-        5
-
-    ]
-
-    const MAX_SCORE = 25;
-
-    
-    let question1Response = document.getElementById('q1').selectedOptions[0].value;
-    let question2Response = document.getElementById('q2').selectedOptions[0].value;
-    let question3Response = document.getElementById('q3').selectedOptions[0].value;
-    let question4Response = document.getElementById('q4').selectedOptions[0].value;
-    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+	<label>What is your current age?</label><br />
+	<select id="ageID">
+		<option value="0">Less than 30</option>
+		<option value="10">30 to 45</option>
+		<option value="20">45 to 60</option>
+		<option value="30">Greater than 60</option>
+	</select>
+	<br /><br />
 
 
-   
-    console.log('Question 1 Answers:')
-    console.log(document.getElementById('q1').selectedOptions[0].text);
-    console.log(document.getElementById('q1').selectedOptions[0].value);
-    console.log(question1Response);
+	<label> If you can please describe your BMI?</label><br />
+	<select id="bmiID">
+		<option value="0">normal</option>
+		<option value="30">overweight</option>
+		<option value="75">other</option>
+	</select>
+	
+	<br /><br />
+	<img src="BloodPressurePicture.png" alt="Blood Pressure Picture">
 
-    console.log('Question 2 Answers:')
-    console.log(document.getElementById('q2').selectedOptions[0].text);
-    console.log(document.getElementById('q2').selectedOptions[0].value);
-    console.log(question2Response);
+	<br /><br />
+	<label>What is your blood pressure?</label><br />
+	
 
-    console.log('Question 3 Answers:');
-    console.log(document.getElementById('q3').selectedOptions[0].text);
-    console.log(document.getElementById('q3').selectedOptions[0].value);
-    console.log(question3Response);
+	<select id="bloodPressureID">
+		<option value="0">normal</option>
+		<option value="15">elevated</option>
+		<option value="30">stage 1</option>
+		<option value="75">stage 2</option>
+		<option value="100">crisis</option>
+	</select>
+	<br /><br />
 
-    console.log('Question 4 Answers:')
-    console.log(document.getElementById('q4').selectedOptions[0].text);
-    console.log(document.getElementById('q4').selectedOptions[0].value);
-    console.log(question4Response);
+	<label>Do you have diabetes?</label><br />
+	<select id="diabetesID">
+		<option value="0">no</option>
+		<option value="10">yes</option>
+	</select>
+	<br /><br />
 
-    console.log('Question 5 Answers:');
-    console.log(document.getElementById('q5').selectedOptions[0].text);
-    console.log(document.getElementById('q5').selectedOptions[0].value);
-    console.log(question5Response);
+	<label>Do you have cancer?</label><br />
+	<select id="cancerID">
+		<option value="0">no</option>
+		<option value="10">yes</option>
+	</select>
+	<br /><br />
 
-    
-    let question1Compatibility = 5 - Math.abs(question1Response - Desired_Response[0]);
-    let question2Compatibility = 5 - Math.abs(question2Response - Desired_Response[1]);
-    let question3Compatibility = 5 - Math.abs(question3Response - Desired_Response[2]);
-    let question4Compatibility = 5 - Math.abs(question4Response - Desired_Response[3]);
-    let question5Compatibility = 5 - Math.abs(question5Response - Desired_Response[4]);
+	<label>Do you have Alzheimer’s?</label><br />
+	<select id="alzheimersID">
+		<option value="0">no</option>
+		<option value="10">yes</option>
+	</select>
 
-    console.log('c1='+question1Compatibility);
-    console.log('c2='+question2Compatibility);
-    console.log('c3='+question3Compatibility);
-    console.log('c4='+question4Compatibility);
-    console.log('c5='+question5Compatibility);
+	<br /><br /><br />
 
-    
-    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+	<button onclick="calculateRisk()">Calculate Risk</button>
+	<p id="riskID"></p>
+	<p id="messageID"></p>
 
-    
-    totalCompatibility *= 100 / MAX_SCORE;
-    totalCompatibility = Math.round(totalCompatibility);
-    console.log('totalCompatibility='+ totalCompatibility);
+	<br /><br /><br /><br />
+	
+	<p>A better way to calculate BMI</p>
+	<label>What is your height in feet and inches?</label><br />
+	<select id="heightID">
+		<option value="54">4'6" or shorter</option>
+		<option value="56">4'8"</option>
+		<option value="58">4'10"</option>
+		<option value="60">5'0"</option>
+		<option value="62">5'2"</option>	
+		<option value="64">5'4"</option>
+		<option value="66">5'6"</option>
+		<option value="68">5'8"</option>
+		<option value="70">5'10"</option>
+		<option value="72">6'0"</option>
+		<option value="74">6'2"</option>
+		<option value="76">6'4" or taller</option>
+        <option value="78">6'6"</option>
+        <option value="80">6'8"</option>
+	</select>
+	<br><br />
 
-    document.getElementById('compatibility').innerHTML = 'Your compatibility is: '+totalCompatibility;
+	<label>What is your approximate weight in US lbs?</label><br />
+	<select id="weightID">
+		<option value="90">90 lbs</option>
+		<option value="100">100 lbs</option>
+		<option value="110">110 lbs</option>
+		<option value="120">120 lbs</option>	
+		<option value="160">[Add more options here]</option>
+		<option value="180">170 lbs</option>
+		<option value="190">190 lbs</option>
+		<option value="200">200 lbs</option>
+        <option value="210">210 lbs</option>
+        <option value="220">220 lbs</option>
+        <option value="240">240 lbs</option>
+        <option value="260">260 lbs</option>
+        <option value="280">280 lbs</option>
+        <option value="300">300 lbs</option>
+	</select><br /><br />
+
+	<button onclick="calculateBMI()">Calculate BMI</button>
+	<p id="bmiResultID"></p>
+
+	<p id="bmiMessageID"></p>
+
+
+<script>
+console.log("starting Health Insurance Risk Calculator... ");
+
+function calculateRisk() {
+	console.log("calculateRisk()");
+
+	
+	let ageResponseValue = parseInt(document.getElementById("ageID").selectedOptions[0].value);
+	console.log("ageResponseValue = " + ageResponseValue);
+
+
+	let bmiResponseValue = parseInt(document.getElementById("bmiID").selectedOptions[0].value);
+	console.log("bmiResponseValue = " + bmiResponseValue);
+
+
+	let bloodPressureResponseValue = parseInt(document.getElementById("bloodPressureID").selectedOptions[0].value);
+	console.log("bloodPressureResponseValue = " + bloodPressureResponseValue);
+
+	
+	let diabetesResponseValue = parseInt(document.getElementById("diabetesID").selectedOptions[0].value);
+	console.log("alzheimers = " + diabetesResponseValue);
+
+	
+	let cancerResponseValue = parseInt(document.getElementById("cancerID").selectedOptions[0].value);
+	console.log("cancerResponseValue = " + cancerResponseValue);
+
+	
+	let alzheimersResponseValue = parseInt(document.getElementById("alzheimersID").selectedOptions[0].value);
+	console.log("alzheimersResponseValue = " + alzheimersResponseValue);
+
+	let totalRisk = ageResponseValue + bmiResponseValue + bloodPressureResponseValue + diabetesResponseValue + cancerResponseValue + alzheimersResponseValue;
+	console.log("totalRisk = " + totalRisk)
+
+	document.getElementById("riskID").innerHTML = "Your total risk is: " + totalRisk;
+
+	
+
+	let message = ""
+	if (totalRisk <= 20) {
+		message = "low risk"
+	} else if (totalRisk <= 50) {
+		message = "moderate risk"
+	} else if (totalRisk <= 75) {
+		message = "high risk"
+    } else { 
+        message = " uninsurable"
+    }
+	
+
+
+	document.getElementById("messageID").innerHTML = message;
 
 
 
 
+}
 
+function BMI(height, weight) {
+	return (703 * weight) / (height * height)
+}
+
+function calculateBMI() {
+	console.log("CalculateBMI()")
+	let heightValueInInches = parseInt(document.getElementById("heightID").selectedOptions[0].value);
+	let weightValueInLbs = parseInt(document.getElementById("weightID").selectedOptions[0].value);
+
+	console.log("Height="+heightValueInInches+" and weight="+weightValueInLbs);
+
+	let bmiValue = BMI(heightValueInInches, weightValueInLbs)
+	console.log("BMI="+bmiValue)
+
+	
+	bmiValue = Math.round(bmiValue*10)/10
+	console.log("BMI="+bmiValue)
+
+	document.getElementById("bmiResultID").innerHTML = "Your Body Mass Index (BMI) is: " + bmiValue;
+
+	let BMIMessage = ""
+	if (bmiValue < 24.9) {
+		BMIMessage = "Normal"
+	} else if (bmiValue < 29.9) {
+		BMIMessage = "Overweight"
+	} else {
+		BMIMessage = "Obese"
+	}
+
+	document.getElementById("bmiMessageID").innerHTML = BMIMessage;
 }
 
 </script>
